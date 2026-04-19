@@ -9,6 +9,7 @@
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('pyrefly')
 vim.lsp.enable('ruff')
+vim.lsp.enable('ts_ls')
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
@@ -29,8 +30,8 @@ vim.diagnostic.config({
   -- virtual_lines = true
 
   -- Alternatively, customize specific options
-  virtual_lines = {
-    -- Only show virtual line diagnostics for the current cursor line
+  virtual_text = {
+    -- Only show virtual text diagnostics for the current cursor line
     current_line = true,
   },
 })
