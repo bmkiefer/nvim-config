@@ -30,6 +30,9 @@ vim.keymap.set('n', '<C-l>', ':set hlsearch!<cr><C-l>', { desc = 'Toggle search 
 -- Toggle visible whitespace characters
 vim.keymap.set('n', '<leader>l', ':listchars!<cr>', { desc = 'Toggle [l]istchars' })
 
+-- Neo-tree
+vim.keymap.set('n', '\\', ':Neotree toggle<cr>', { desc = 'Toggle Neo-tree' })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
