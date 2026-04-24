@@ -13,6 +13,7 @@ lua/config/
   theme.lua               # Colorscheme configuration
   options.lua             # Editor options
   keymap.lua              # Key mappings
+  gitlink.lua             # GitHub permalink generation
   autocmd.lua             # Autocommands
   lsp.lua                 # LSP server enablement + completion/diagnostics config
 lsp/
@@ -27,7 +28,7 @@ lsp/
 
 Modules are loaded sequentially in `init.lua`:
 ```
-globals → plugins → theme → options → keymap → autocmd → lsp
+globals → plugins → theme → options → keymap → gitlink → autocmd → lsp
 ```
 
 LSP servers are configured in individual files under `lsp/` and enabled in `lua/config/lsp.lua` via `vim.lsp.enable()`. See the [Neovim 0.11 LSP overview](https://gpanders.com/blog/whats-new-in-neovim-0-11/) for how this works.
@@ -50,6 +51,7 @@ LSP servers are configured in individual files under `lsp/` and enabled in `lua/
 - **Keymaps** → `lua/config/keymap.lua`
 - **Options** → `lua/config/options.lua`
 - **Autocommands** → `lua/config/autocmd.lua`
+- **GitHub links** → `lua/config/gitlink.lua`
 - **Leader key** → `<Space>`
 
 ## Code Style
