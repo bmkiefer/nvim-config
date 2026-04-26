@@ -4,6 +4,14 @@
       "rev": "426dbebe06b5c69fd846ceb17b42e12f890aedf1",
       "src": "https://github.com/catppuccin/nvim"
     },
+    "live-server": {
+      "rev": "084d69b63610803c18ddd7541294d83ca748d1dc",
+      "src": "https://github.com/selimacerbas/live-server.nvim"
+    },
+    "markdown-preview": {
+      "rev": "29234edae5b8b7db5ae05061ff7197f95ef0ffd5",
+      "src": "https://github.com/selimacerbas/markdown-preview.nvim"
+    },
     "neo-tree": {
       "rev": "4d0828d95adaf4250c1373d2cd9318d3509712b7",
       "src": "https://github.com/nvim-neo-tree/neo-tree.nvim"

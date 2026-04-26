@@ -33,6 +33,10 @@ vim.keymap.set('n', '<leader>l', ':listchars!<cr>', { desc = 'Toggle [l]istchars
 -- Neo-tree
 vim.keymap.set('n', '\\', ':Neotree toggle<cr>', { desc = 'Toggle Neo-tree' })
 
+-- Markdown preview
+vim.keymap.set('n', '<leader>mp', ':MarkdownPreview<cr>', { desc = '[M]arkdown [p]review start' })
+vim.keymap.set('n', '<leader>ms', ':MarkdownPreviewStop<cr>', { desc = '[M]arkdown preview [s]top' })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
