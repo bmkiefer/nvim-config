@@ -1,3 +1,4 @@
+--- Run a git command and return the trimmed output, or nil on failure.
 local function git(cmd)
   local result = vim.trim(vim.fn.system(cmd))
   if vim.v.shell_error ~= 0 then
@@ -6,6 +7,7 @@ local function git(cmd)
   return result
 end
 
+--- Notify the user with a warning and return nil for use in `or` chains.
 local function fail(msg)
   vim.notify(msg, vim.log.levels.WARN)
   return nil
@@ -16,6 +18,7 @@ local remote_patterns = {
   'github%.com/([^/]+)/(.+)',
 }
 
+--- Extract the owner and repo name from a GitHub remote URL (SSH or HTTPS).
 local function parse_github_remote(url)
   for _, pattern in ipairs(remote_patterns) do
     local owner, repo = url:match(pattern)
@@ -26,6 +29,7 @@ local function parse_github_remote(url)
   return nil, nil
 end
 
+--- Format a GitHub line anchor (e.g. `#L10` or `#L10-L20`).
 local function format_anchor(line1, line2)
   if line1 == line2 then
     return '#L' .. line1
@@ -33,6 +37,7 @@ local function format_anchor(line1, line2)
   return '#L' .. line1 .. '-L' .. line2
 end
 
+--- Build a GitHub permalink for the given line range and copy it to the clipboard.
 local function get_github_link(line1, line2)
   local root = git('git rev-parse --show-toplevel') or fail('Not a git repository')
   if not root then
