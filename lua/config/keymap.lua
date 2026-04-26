@@ -1,5 +1,7 @@
 -- keymap
 --------------------------------------------------------------------------------
+local gitlink = require('config.gitlink')
+
 -- Navigate visual lines
 vim.keymap.set({ 'n', 'x' }, 'j', 'gj', { desc = 'Navigate down (visual line)' })
 vim.keymap.set({ 'n', 'x' }, 'k', 'gk', { desc = 'Navigate up (visual line)' })
@@ -40,3 +42,16 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('n', '<leader>xx', '<Cmd>source %<CR>', { desc = 'Source current file' })
 vim.keymap.set('n', '<leader>x', '<Cmd>:.lua<CR>', { desc = 'Lua: execute current line' })
 vim.keymap.set('v', '<leader>x', '<Cmd>:lua<CR>', { desc = 'Lua: execute current selection' })
+
+-- GitHub permalinks
+vim.keymap.set('n', '<leader>gy', function()
+  local line = vim.fn.line('.')
+  gitlink.get_github_link(line, line)
+end, { desc = 'Copy GitHub link to clipboard' })
+
+vim.keymap.set('x', '<leader>gy', function()
+  vim.cmd('normal! \27')
+  local line1 = vim.fn.line("'<")
+  local line2 = vim.fn.line("'>")
+  gitlink.get_github_link(line1, line2)
+end, { desc = 'Copy GitHub link to clipboard (selection)' })

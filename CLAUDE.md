@@ -28,8 +28,10 @@ lsp/
 
 Modules are loaded sequentially in `init.lua`:
 ```
-globals → plugins → theme → options → keymap → gitlink → autocmd → lsp
+globals → plugins → theme → options → keymap → autocmd → lsp
 ```
+
+`gitlink.lua` is a pure module loaded on demand by the GitHub permalink keymaps in `keymap.lua`.
 
 LSP servers are configured in individual files under `lsp/` and enabled in `lua/config/lsp.lua` via `vim.lsp.enable()`. See the [Neovim 0.11 LSP overview](https://gpanders.com/blog/whats-new-in-neovim-0-11/) for how this works.
 
