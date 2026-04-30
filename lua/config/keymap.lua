@@ -2,6 +2,9 @@
 --------------------------------------------------------------------------------
 local gitlink = require('config.gitlink')
 
+local COMMENT_AUTHOR = 'bmkiefer'
+local COMMENT_DATE_FORMAT = '%m-%d-%Y'
+
 -- Navigate visual lines
 vim.keymap.set({ 'n', 'x' }, 'j', 'gj', { desc = 'Navigate down (visual line)' })
 vim.keymap.set({ 'n', 'x' }, 'k', 'gk', { desc = 'Navigate up (visual line)' })
@@ -42,6 +45,27 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('n', '<leader>xx', '<Cmd>source %<CR>', { desc = 'Source current file' })
 vim.keymap.set('n', '<leader>x', '<Cmd>:.lua<CR>', { desc = 'Lua: execute current line' })
 vim.keymap.set('v', '<leader>x', '<Cmd>:lua<CR>', { desc = 'Lua: execute current selection' })
+
+-- Insert NOTE/TODO comments on a new line above the cursor using the buffer's commentstring
+local function insert_tagged_comment(tag)
+  local date = os.date(COMMENT_DATE_FORMAT)
+  local prefix = string.format('%s(%s %s): ', tag, COMMENT_AUTHOR, date)
+  local comment = vim.bo.commentstring:gsub('%%s', prefix)
+  local row = vim.api.nvim_win_get_cursor(0)[1]
+  local current_line = vim.api.nvim_buf_get_lines(0, row - 1, row, false)[1] or ''
+  local indent = current_line:match('^%s*') or ''
+  vim.api.nvim_buf_set_lines(0, row - 1, row - 1, false, { indent .. comment })
+  vim.api.nvim_win_set_cursor(0, { row, 0 })
+  vim.cmd('startinsert!')
+end
+
+vim.keymap.set('n', '<leader>in', function()
+  insert_tagged_comment('NOTE')
+end, { desc = 'Insert NOTE comment above' })
+
+vim.keymap.set('n', '<leader>it', function()
+  insert_tagged_comment('TODO')
+end, { desc = 'Insert TODO comment above' })
 
 -- GitHub permalinks
 vim.keymap.set('n', '<leader>gy', function()

@@ -61,6 +61,10 @@ LSP servers are configured in individual files under `lsp/` and enabled in `lua/
 Lua is formatted with [StyLua](https://github.com/JohnnyMorganz/StyLua). Config in `.stylua.toml`:
 - 160 char line width, 2-space indent, single quotes, Unix line endings
 
+## Keymaps
+
+- When suggesting `<leader>`-prefixed mappings, avoid sequences where consecutive keys use the same finger on QWERTY (e.g. `<leader>ct` — both `c` and `t` are left index). Prefer combinations that alternate fingers or hands.
+
 ## Git Workflow
 
 - Never commit directly to `master` — always use a feature branch and open a PR
